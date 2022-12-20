@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>Contacts</title>
+        <link rel="stylesheet"
+              type="text/css"
+              th:href="@{/resources/style.css}"></link>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    </head>  
+    <body>
+        <div th:replace="fragments/header.html :: header"/>
+        <div align="center" style="margin-left: 15%; margin-right: 15%;">
+            <div style="text-align: left; margin-top: 10px;">
+                <h4 class="card-title text-muted">New/Edit Contact</h4>
+            </div>
+            <div style="text-align: left; margin-top: 20px;">
+                <form th:action="@{/saveContact}" th:method="post" th:object="${contact}">
+                    <input type="hidden"  th:field="*{id}"/>
+                    <div class="form-group">
+                        <label for="name">Name</label>   
+                        <input type="text" th:field="*{name}"   class="form-control" id="name" aria-describedby="nameHelp" placeholder="Enter name"/>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>   
+                        <input type="email" th:field="*{email}"   class="form-control" id="email" aria-describedby="emailHelp" placeholder="Enter email"/>
+                    </div>
+                    <div class="form-group">
+                        <label for="address">Address</label>   
+                        <input type="text" th:field="*{address}"   class="form-control" id="address" aria-describedby="addressHelp" placeholder="Enter address"/>
+                    </div>
+                    <div class="form-group">
+                        <label for="telephone">Telephone</label>   
+                        <input type="text" th:field="*{telephone}"   class="form-control" id="telephone" aria-describedby="telephoneHelp" placeholder="Enter telephone"/>
+                    </div>
+                    <input class="btn btn-primary" type="submit" value="Save" style="margin-top:10px;">
+                </form>
+            </div>
+        </div>
+    </body>
+</html>

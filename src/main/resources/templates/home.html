@@ -1,0 +1,71 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>Contacts</title>
+        <link rel="stylesheet"
+              type="text/css"
+              th:href="@{/resources/style.css}"></link>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    </head>  
+    <body>
+        <div th:replace="fragments/header.html :: header"/>
+        <div align="center" style="margin-left: 15%; margin-right: 15%;">
+            <div style="text-align: left; margin-top: 15px;">
+                <h4 class="card-title text-muted">Contact List</h4>
+            </div>
+
+            <table  id="main" class="table">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Address</th>
+                        <th>Telephone</th>
+                        <th>Address 2</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <div  th:each="contact: ${listContact}">
+                        <tr>
+                            <td scope="row"><p th:text="*{contact.name}"> </p></td>
+                            <td><p th:text="*{contact.email}"> </p></td>
+                            <td><p th:text="*{contact.address}"> </p></td>
+                            <td><p th:text="*{contact.telephone}"> </p></td>
+                            <td>
+                                <div th:object="${contact}">
+                                    <span th:text="*{address}"></span>
+                                </div>
+                            </td>
+                            <td>
+                                <a th:href="@{/editContactThymeLeaf?(id=${contact.id})}">Edit</a>
+                                &nbsp;&nbsp;&nbsp;&nbsp;
+                                <a th:href="@{/deleteContact?(id=${contact.id})}">Delete</a>
+                            </td>
+                        </tr>
+                    </div>   
+                </tbody>
+            </table>  
+            <br/>
+            <div style="text-align: left">
+                <a href="newContact" class="btn btn-primary btn-sm" role="button">New Contact</a>
+            </div>
+            <!--
+                      
+                        <div th:replace="fragments/header.html :: header">
+                            
+                        </div>
+            -->
+            <!--
+                   Second table
+                   <div th:with="frag=~{this  :: #main}">
+                       <div th:insert="${frag}"/>
+                   </div>
+            -->
+
+        </div>
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    </body>
+</html>
